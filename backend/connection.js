@@ -2,19 +2,17 @@ const mongoose = require('mongoose');
 const MongoClient = require('mongodb').MongoClient;
 const uri = "mongodb+srv://venturads:CATdog1221$@cluster0-nt3dp.mongodb.net/test?retryWrites=true&w=majority";
 
-// const connectDB = async () => {
-//   await mongoose.connect(uri, {
-//     useNewUrlParser: true,
-//     useUnifiedTopology: true
-//   });
-//   console.log('db connected!!!!!!!!!');
-// }
-
-mongoose.connect( uri, { 
+const client = new MongoClient(uri, { 
     useNewUrlParser: true, 
-    useUnifiedTopology: true
-}, () => { 
-    console.log("we are connected")
-}).catch(err => console.log(err));
+    useUnifiedTopology: true,
+    useNewUrlParser: true
+ });
+client.connect(err => {
+  const collection = client.db("sample_airbnb").collection("listingsAndReviews");
+  // perform actions on the collection object
+  console.log("db connected: ", collection);
+  client.close();
+});
 
-//module.exports = connectDB;
+module.exports = client;
+
