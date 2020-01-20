@@ -4,6 +4,8 @@ const mongoose = require('mongoose');
 const routeCourses = require("./routes/courses");
 require("dotenv/config");
 
+app.use(express.urlencoded({ extended: true}));
+app.use(express.json());
 //Middleware
 app.use("/api/courses", routeCourses);
 
@@ -13,7 +15,6 @@ app.get("/", (req, res) => {
     res.send("Hello world");
 });
 app.listen(5000, () => console.log('Server started'));
-
 
 mongoose.connect(process.env.ATLAS_URI, {
     useNewUrlParser: true, 
