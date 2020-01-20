@@ -1,11 +1,14 @@
 const express = require('express');
 const app = express();
 const mongoose = require('mongoose');
-const routeCourses = require("./routes/courses");
+
 require("dotenv/config");
 
 app.use(express.urlencoded({ extended: true}));
 app.use(express.json());
+
+const routeCourses = require("./routes/courses");
+
 //Middleware
 app.use("/api/courses", routeCourses);
 
