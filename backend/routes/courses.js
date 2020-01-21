@@ -2,6 +2,9 @@ const express = require("express");
 const router = express.Router();
 
 const Course = require("../models/Course");
+
+require("dotenv/config");
+
 // router.get("/", (req, res) => {
 //     res.send([
 //         { id: "1", course: "React Tut", tag: "reactjs"},
@@ -10,8 +13,32 @@ const Course = require("../models/Course");
 //     ]);
 // });
 
-router.get("/1", (req, res) => {
-    res.send("course 1");
+router.get("/dbases", (req, res) => {
+    Course.find()
+    .exec()
+    .then(result => {
+        res.status(200).json(result);
+    })
+    .catch(err => {
+        res.status(500).json({ message: err });
+    });
+});
+
+router.get("/list", (req, res) => {
+    res.send(
+    async function findOneDocByName(client, nameDoc){
+        result = await client.db("test").collection("courses").findOne({ course: nameDoc });
+
+        if (result) {
+            console.log(`Found a listing in the collection with the name '${nameDoc}':`);
+            console.log(result);
+        } else {
+            console.log(`No listings found with the name '${nameDoc}'`);
+        }
+    });
+
+    findOneDocByName(client, "reactjs and mongodb");
+
 });
 
 router.post("/", (req, res) => {
@@ -23,9 +50,14 @@ router.post("/", (req, res) => {
     mycourse
         .save()
         .then(result => {
+            res.status(201).json({
+                message: "post request",
+                result
+            })
             console.log(result);
         })
         .catch(err => {
+            res.status(500).json({ message: err });
             console.log(err);
         });
 });

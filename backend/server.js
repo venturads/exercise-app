@@ -21,7 +21,6 @@ app.listen(5000, () => console.log('Server started'));
 
 mongoose.connect(process.env.ATLAS_URI, {
     useNewUrlParser: true, 
-    useUnifiedTopology: true,
-    useNewUrlParser: true
+    useUnifiedTopology: true
 }, () => console.log("database connected!")
 );
