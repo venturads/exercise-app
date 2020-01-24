@@ -21,6 +21,12 @@ app.get("/", (req, res) => {
 });
 app.listen(5000, () => console.log('Server started'));
 
+const exerciseRouter = require('./routes/exercises');
+const usersRouter = require('./routes/users');
+
+app.use('/exercises', exercisesRouter);
+app.use('/users', usersRouter);
+
 mongoose.connect(process.env.ATLAS_URI, {
     useNewUrlParser: true, 
     useUnifiedTopology: true
