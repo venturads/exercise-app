@@ -1,8 +1,9 @@
 const express = require('express');
 const app = express();
 const mongoose = require('mongoose');
+const cors = require('cors');
 
-require("dotenv/config");
+require("dotenv").config();
 
 app.use(express.urlencoded({ extended: true}));
 app.use(express.json());
@@ -14,6 +15,7 @@ app.use("/api/courses", routeCourses);
 
 //connectDB();
 const Port = process.env.Port || 5000;
+
 app.get("/", (req, res) => {
     res.send("Hello world");
 });
