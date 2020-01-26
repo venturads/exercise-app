@@ -37,6 +37,10 @@ router.route('/update/:id').update((req, res) => {
             exercise.date = Date.parse(req.body.date);
         })
         .catch(err => res.status(400).json('Error: ' + err));
-})
+
+        exercise.save()
+            .then(() => req.json('Exercise updated!'))
+            .catch(err => res.status(400).json('Error: ' + err));
+});
 
 module.exports = router;
