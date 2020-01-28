@@ -4,7 +4,7 @@ export default class ExercisesList extends Component {
     render() {
         return (
             <div>
-                <p>Create Components!</p>
+                <p>Create Users!</p>
             </div>
         )
     }
