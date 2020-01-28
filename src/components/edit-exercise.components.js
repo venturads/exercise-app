@@ -27,19 +27,17 @@ export default class EditExercise extends Component {
         //     users: ['test user'],
         //     username: 'test user'
         // })
-        axios.get('http://localhost:5000/users/')
+        axios.get('http://localhost:5000/exercises/'+this.props.match.params.id)
             .then(response => {
-                this(response => {
-                    this.setState({
-                        username: response.data.username,
-                        descripton: response.data.description,
-                        duration: response.data.data.duration,
-                        date: new Date(response.data.date)
-                    })
+                this.setState({
+                    username: response.data.username,
+                    descripton: response.data.description,
+                    duration: response.data.duration,
+                    date: new Date(response.data.date)
                 })
-                .catch( error => {
-                    console.log(error);
-                })
+            })
+            .catch( error => {
+                console.log(error);
             })
         axios.get('http://localhost:5000/users/')
         .then(response => {
@@ -88,7 +86,7 @@ export default class EditExercise extends Component {
 
         console.log(exercise);
 
-        axios.post('http://localhost:5000/exercises/add', exercise)
+        axios.post('http://localhost:5000/exercises/update/'+this.props.match.params.id, exercise)
             .then(res => console.log(res.data));
 
         window.location = '/';
@@ -97,7 +95,7 @@ export default class EditExercise extends Component {
     render() {
         return (
             <div>
-                <h3>Create New Exercise Log</h3>
+                <h3>Edit Exercise Log</h3>
                 <form onSubmit={this.onSubmit}>
                     <div className="form-group">
                         <label>Username: </label>
@@ -143,7 +141,7 @@ export default class EditExercise extends Component {
                         </div>
                     </div>
                     <div className="form-group">
-                        <input type="submit" value="Create Exercise Log" className="btn btn-primary" />
+                        <input type="submit" value="Edit Exercise Log" className="btn btn-primary" />
                     </div>
                 </form>
             </div>
