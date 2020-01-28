@@ -27,9 +27,9 @@ export default class ExercisesList extends Component {
 
         console.log(user);
 
-        this.setState{(
+        this.setState({
             username: ''
-        )}
+        })
     }
 
     render() {
@@ -43,6 +43,7 @@ export default class ExercisesList extends Component {
                             required
                             className="form-control"
                             value={this.state.username}
+                            onChange={this.onChangeUsername}
                             />
                     </div>
                     <div className="form-group">
