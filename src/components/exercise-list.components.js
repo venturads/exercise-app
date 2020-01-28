@@ -40,8 +40,8 @@ export default class ExercisesList extends Component {
         return (
             <div>
                 <p>List Components!</p>
-                <table>
-                    <thead>
+                <table className="table">
+                    <thead className="thead-light">
                         <tr>
                             <th>Username</th>
                             <th>Description</th>
