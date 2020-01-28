@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
+import DatePicker from 'react-datepicker';
+import "react-datepicker/dist/react-datepicker.css";
 
-export default class ExercisesList extends Component {
+export default class CreateExercise extends Component {
     constructor(props) {
         super(props);
 
@@ -8,6 +10,7 @@ export default class ExercisesList extends Component {
         this.onChangeDescription = this.onChangeDescription.bind(this);
         this.onChangeDuration = this.onChangeDuration.bind(this);
         this.onChangeDate = this.onChangeDate.bind(this);
+        this.onSubmit = this.onSubmit.bind(this);
 
         this.state = {
             username: '',
@@ -18,7 +21,7 @@ export default class ExercisesList extends Component {
         }
     }
 
-    componentDidMount(e) {
+    componentDidMount() {
         this.setState({
             users: ['test user'],
             username: 'test user'
@@ -43,13 +46,13 @@ export default class ExercisesList extends Component {
         });
     }
 
-    onChangeDate(e) {
+    onChangeDate(date) {
         this.setState({
             date: date
         });
     }
 
-    onSubmit() {
+    onSubmit(e) {
         e.preventDefault();
         
         const exercise = {
@@ -59,7 +62,7 @@ export default class ExercisesList extends Component {
             date: this.state.date
         }
 
-        console.log(exercicse);
+        console.log(exercise);
 
         window.location = '/';
     }
@@ -75,8 +78,8 @@ export default class ExercisesList extends Component {
                         value={this.state.username}
                         onChange={this.onChangeUsername}>
                             {
-                                this.state.users.map( () => {
-                                    <option
+                                this.state.users.map( (user) => {
+                                    return <option
                                     key={user}
                                     value={user}>{user}</option>;
                                 })
