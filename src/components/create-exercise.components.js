@@ -106,7 +106,7 @@ export default class CreateExercise extends Component {
                         onChange={this.onChangeDuration}
                          />
                     </div>
-                    <div>
+                    <div className="form-group">
                         <label>Date: </label>
                         <div>
                             <DatePicker
@@ -116,7 +116,7 @@ export default class CreateExercise extends Component {
                         </div>
                     </div>
                     <div className="form-group">
-                        <input type="submit" value="Crate Exercise Log" className="btn btn-primary" />
+                        <input type="submit" value="Create Exercise Log" className="btn btn-primary" />
                     </div>
                 </form>
             </div>
